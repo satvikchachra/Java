@@ -1,5 +1,5 @@
 package ArrQues;
-import java.util.Scanner;
+import java.util.*;
 
 public class two_sum {
 
@@ -12,6 +12,7 @@ public class two_sum {
 			nums[i] = scn.nextInt();
 		}
 		int target = scn.nextInt();
+		Arrays.sort(nums);
 		int[] ans = tSum(nums,target);
 		for(int i = 0 ; i < ans.length ; i++) {
 			System.out.println(ans[i]);
