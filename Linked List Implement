@@ -1,0 +1,213 @@
+package linkedListDS;
+import java.util.Scanner;
+
+public class ImplementLL {
+	
+	private class Node{
+		
+		int data;
+		Node next;
+		
+		public Node(int item){
+			this.data = item;
+		}
+		
+		public Node(){
+			
+		}
+	}
+	private Node head;
+	private Node tail;
+	private int size;
+	
+	public void addFirst(int item) {
+		
+		Node nn = new Node();
+		
+		if (size == 0) {
+			nn.data = item;
+			nn.next = null;
+			//head of ll which has just 1 node now
+			head = nn;
+			
+		}
+		else {
+			nn.data = item;
+			//nn.next -> previous head of list
+			nn.next = head;
+			//update head of the linked list
+			head = nn;	
+		}
+		size++;	
+	}
+	
+	public void addLast(int item) {
+		
+		Node nn = new Node();
+		nn.data = item;
+		nn.next = null;
+		
+		if(size == 0) {
+			head = nn;
+		}
+		else {
+		//traverse to find the tail i.e. last node in LL
+		Node temp = head;
+		while(temp.next!=null) {
+			temp = temp.next;
+		}
+		
+		//update i.e. add last
+		temp.next = nn;
+		}
+		size++;
+	}
+	
+	public void addAt(int item, int idx) throws Exception{
+		
+		if(idx < 0 || idx>size) {
+			throw new Exception("Invalid Index");
+		}
+		
+		else if(idx == 0) {
+			addFirst(item);
+			size++;
+		}
+		
+		else if(idx == size) {
+			addLast(item);
+			size++;
+		}
+		
+		else {
+			
+			Node nn = new Node();
+			nn.data = item;
+			nn.next = null;
+			
+			//traverse to find predecessor
+			Node temp = head;
+			int count = 0;
+			while(count != idx-1 ) {
+				temp = temp.next;
+				count++;
+			}
+			
+			Node successor = temp.next; 
+			//update to insert between two node
+			temp.next = nn;
+			nn.next = successor;
+			size++;
+		}
+	}
+	
+	public int removeFirst() throws Exception{
+		//return the removed node's data
+		
+		if(size == 0) {
+			throw new Exception("Empty Linked List");
+		}
+		
+		int removedData = head.data;
+		if(size == 1) {	
+			//update head
+			head = null;
+		}
+		
+		else {
+		//update head
+		head = head.next;
+		}
+		
+		size--;
+		return removedData;
+		
+	}
+	
+	public int removeLast() throws Exception{
+		//return removed data
+		if(size == 0) {
+			throw new Exception("Empty Linked List");
+		}
+		
+		int removedData = head.data;
+		if(size == 1) {
+			head = null;
+		}
+		
+		else {
+		Node temp = head;
+		int count = 0;
+		while(count != size-2) {
+			temp = temp.next;
+			count++;
+		}
+		temp.next = null;
+		}
+		size--;
+		return removedData;
+		
+	}
+	
+	public int removeAt(int idx) throws Exception {
+		if(size == 0) {
+			throw new Exception("Empty Linked List");
+		}
+		
+		//just to initialize the variable
+		int removedData = -1;
+		if (size == 1) {
+			removedData = head.data;
+			head = null;
+		}
+		if(idx < 0 || idx >= size) {
+			throw new Exception("Invalid Index");
+		}
+		if(idx == 0) {
+			return removeFirst();
+		}
+		if(idx == size-1) {
+			return removeLast();
+		}
+		else {
+			Node temp = head;
+			int count = 0;
+			while(count != idx-1) {
+				temp = temp.next;
+				count++;
+			}
+			
+			Node predecessor = temp;
+			Node curr = temp.next;
+			removedData = curr.data;
+			Node successor = curr.next;
+			predecessor.next = successor;
+			
+		}
+		size--;
+		return removedData;
+	}
+	
+	public void display() {
+		Node temp = head;
+		while(temp!=null) {
+			System.out.println(temp.data + ", ");
+			temp = temp.next;
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Scanner scn = new Scanner(System.in);
+		
+		ImplementLL list = new ImplementLL();
+		list.addFirst(10);
+		list.addFirst(20);
+		list.addFirst(30);
+		list.addFirst(40);
+		list.addAt(50, 2);
+		list.removeAt(2);
+		list.display();
+	}
+	
+}
