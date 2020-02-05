@@ -1,0 +1,88 @@
+// { Driver Code Starts
+import java.io.*;
+import java.util.Scanner;
+class Node
+{
+    int data;
+    Node right,down;
+    
+    Node(int data){
+        this.data = data;
+        right = null;
+        down = null;
+    }
+}
+public class Linked_list_2D_Matrix {
+ 
+    // node of linked list
+ 
+    static void display(Node head) {
+         
+        Node Rp;
+        Node Dp = head;
+        while (Dp != null) {
+            Rp = Dp;
+            while (Rp != null) {
+                System.out.print(Rp.data + " ");
+                Rp = Rp.right;
+            }
+            Dp = Dp.down;
+        }
+        System.out.println();
+    }
+ 
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0)
+        {
+        int n=sc.nextInt();
+        int [][]arr=new int[n][n];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++){
+            int p=sc.nextInt();arr[i][j]=p;}
+        }
+        GFG obj=new GFG();
+        Node head = obj.construct(arr, n);
+        display(head);
+        }
+    }
+ 
+}// } Driver Code Ends
+/*class Node
+
+class Node
+{
+    int data;
+    Node right,down;
+    
+    Node(int data){
+        this.data = data;
+        right = null;
+        down = null;
+    }
+}
+*/
+/*Function should return the head of the 2D LL.*/
+
+class GFG
+{       
+
+    static Node construct(int arr[][],int n)
+    {
+        //Add your code here.
+        return constructpvt(arr,n,0,0);
+    }
+    
+    private static Node constructpvt(int arr[][], int n, int i, int j){
+         if( i > n-1 || j > n-1){
+           return null;
+       }
+        Node nn = new Node(arr[i][j]);
+        nn.right = constructpvt(arr,n,i,j+1);
+        nn.down = constructpvt(arr,n,i+1,j);
+        return nn;
+    }
+    
+}
