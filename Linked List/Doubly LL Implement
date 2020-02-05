@@ -1,0 +1,172 @@
+package doublyLL;
+
+public class doublyLinkedList {
+	
+	class Node{
+		Node prev;
+		Node next;
+		int data;
+		
+		Node(int data){
+			this.data = data;
+		}
+
+	}
+	
+	Node head;
+	Node tail;
+	int size ;
+	
+	void addFirst(int item) {
+		Node n = new Node(item);
+		if(size == 0) {
+			head = n;
+			tail = n;
+		}
+		else {
+		n.next = head;
+		n.prev = null;
+		head.prev = n;
+		head = n;
+		}
+		size++;
+	}
+	
+	void addLast(int item) {
+		Node n = new Node(item);
+		if(size == 0) {
+			head = n;
+			tail = n;
+		}
+		else {
+		n.next = null;
+		tail.next = n;
+		n.prev = tail;
+		tail = n;
+		}
+		size++;
+	}
+	
+	void addAt(int item, int idx) throws Exception{
+		if(idx < 0 || idx > size) {
+			throw new Exception("Invalid Index");
+		}
+		else if(idx == 0) {
+			addFirst(item);
+		}
+		else if(idx == size) {
+			addLast(item);
+		}
+		else {
+		Node n = new Node(item);
+		Node temp = head;
+		int i = 0;
+		while(i != idx-1) {
+			i++;
+			temp = temp.next;
+		}
+		Node pre = temp;
+		Node curr = pre.next;
+		
+		pre.next = n;
+		n.prev = pre;
+		n.next = curr;
+		curr.prev = n;
+		size++;
+
+		}
+	}
+	
+	void removeFirst() throws Exception{
+		if(size == 0) {
+			throw new Exception("Empty Linked List");
+		}
+		else if(size == 1) {
+			head = null;
+			tail = null;
+		}
+		else {
+		head = head.next;
+		head.prev = null;
+		}
+		size--;
+	}
+	
+	void removeLast() throws Exception {
+		if(size == 0) {
+			throw new Exception("Empty Linked List");
+		}
+		else if(size == 1) {
+			head = null;
+			tail = null;
+		}
+		else {
+		int i = 0 ;
+		Node temp = head;
+		while(i != size -2) {
+			i++;
+			temp = temp.next;
+		}
+		temp.next = null;
+		tail = temp;
+		size--;
+		}
+	}
+	
+	void removeAt(int idx) throws Exception{
+		if(idx < 0 || idx >= size) {
+			throw new Exception("Invalid Index");
+		}
+		if(idx == 0) {
+			removeFirst();
+		}
+		else if(idx == size-1) {
+			removeLast();
+		}
+		else {
+			int i = 0;
+			Node temp = head;
+			while(i != idx -1) {
+				i++;
+				temp = temp.next;
+			}
+			Node pre = temp;
+			Node n = pre.next.next;
+			pre.next = n;
+			n.prev = pre;
+			size--;
+		}
+	}
+	
+	void display() {
+		Node temp = head;
+		while(temp!=null) {
+			System.out.println(temp.data);
+			temp = temp.next;
+		}
+	}
+	
+	
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		doublyLinkedList list = new doublyLinkedList();
+		list.addLast(10);
+		list.addLast(20);
+		list.addLast(30);
+		list.addLast(40);
+		list.addLast(50);
+		list.addLast(60);
+		list.addLast(70);
+		list.addLast(80);
+		list.addFirst(90);
+		list.addAt(100, 1);
+		list.removeLast();
+		list.removeFirst();
+		list.removeAt(0);
+		list.removeAt(6);
+		list.removeAt(4);
+		list.display();
+	}
+
+}
