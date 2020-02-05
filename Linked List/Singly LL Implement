@@ -1,0 +1,182 @@
+package linkedListDS;
+
+public class ImplementLL {
+	
+	private class Node {
+		int data;
+		Node next;
+		
+		public Node(){
+			
+		}
+	}
+	
+	private int size;
+	private Node head;
+	
+	public void addFirst(int item) {
+		Node nn = new Node();
+		nn.data = item;
+		
+		if(size == 0) {
+			nn.next = null;
+			head = nn;
+		}
+		
+		else {
+			nn.next = head;
+			head = nn;
+		}
+		
+		size++;
+	}
+	public void addLast(int item) {
+		
+		Node nn = new Node();
+		nn.data = item;
+		
+		if(size == 0) {
+			head = nn;
+			nn.next = null;
+		}
+		
+		Node temp = head;
+		int count = 0;
+		while(count != size-1) {
+			temp = temp.next;
+			count++;
+		}
+		
+		temp.next = nn;
+		size++;
+		
+	}
+	public void addAt(int item,int idx) throws Exception {
+		
+		if(idx < 0 || idx > size) {
+			throw new Exception("Invalid Index");
+		}
+		
+		if(idx == 0) {
+			addFirst(item);
+		}
+		if(idx == size) {
+			addLast(item);
+		}
+		
+		Node nn = new Node();
+		nn.data = item;
+		
+		Node temp = head;
+		int count = 0 ;
+		while(count != idx-1) {
+			temp = temp.next;
+			count++;
+		}
+		
+		Node predecessor = temp;
+		Node successor = temp.next;
+		nn.next = successor;
+		temp.next = nn;
+		size++;
+	}
+	public int removeFirst() throws Exception{
+		if(size == 0) {
+			throw new Exception("Linked List is Empty");
+		}
+		int removedData = head.data;
+		if(size == 1) {
+			head = null;
+		}
+		else {
+		head = head.next;
+		}
+		size--;
+		return removedData;
+	}
+	public int removeLast() throws Exception{
+		if( size == 0 ) {
+			throw new Exception("Linked List is Empty");
+		}
+		int removedElement = head.data;
+		if( size == 1) {
+			head = null;
+		}
+		else {
+		Node temp = head;
+		int count = 0 ;
+		while(count != size -2 ) {
+			temp = temp.next;
+			count++;
+		}
+		removedElement = temp.next.data;
+		temp.next = null;
+		}
+		size--;
+		return removedElement;
+	}
+	public int removeAt(int idx) throws Exception {
+		if(idx < 0 || idx > size) {
+			throw new Exception("Invalid Index");
+		}
+		if(idx == 0) {
+			return removeFirst();
+		}
+		if(idx == size-1) {
+			size--;
+			return removeLast();
+		}
+		if(size == 0) {
+			throw new Exception("Linked List is Empty.");
+		}
+		int removedData;
+		if(size == 1) {
+			removedData = head.data;
+			head = null;
+			size--;
+			return removedData;
+		}
+		else {
+		Node temp = head;
+		int count = 0;
+		while(count != idx-1) {
+			temp = temp.next;
+			count++;
+		}
+		
+		Node predecessor = temp;
+		Node curr = temp.next;
+		removedData = curr.data;
+		Node successor = temp.next.next;
+		
+		predecessor.next = successor;
+
+		size--;
+		return removedData;
+		}
+	}
+	public void display() {
+		Node temp = head;
+		while(temp!=null) {
+			System.out.print(temp.data + ",");
+			temp = temp.next;
+		}
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		ImplementLL LinkedList = new ImplementLL();
+		LinkedList.addFirst(10);
+		LinkedList.addFirst(20);
+		LinkedList.addLast(30);
+		LinkedList.addLast(40);
+		LinkedList.addAt(50, 2);
+		LinkedList.removeFirst();
+		LinkedList.removeLast();
+		LinkedList.removeAt(1);
+		LinkedList.display();
+		
+	}
+	
+}
