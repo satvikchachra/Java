@@ -7,8 +7,8 @@ public class quickSort {
 		// TODO Auto-generated method stub
 		
 		int[] arr = {90,20,50,10,40,12,25,38};
-		display(arr);
 		quickSortRecursive(arr,0,arr.length-1);
+		display(arr);
 	}
 	static void quickSortRecursive(int[] arr, int low , int high) {
 		if(low < high) {
@@ -18,9 +18,10 @@ public class quickSort {
 		}
 	}
 	static int partition(int[] arr, int low, int high) {
-		System.out.println(low + " " + high);
+		
 		int pivot = arr[high];
-		int partitionIndex = low, count = 0 ;
+		int partitionIndex = low;
+		
 		for(int i = low ; i < high; i++) {
 			if(arr[i] <= pivot) {
 				//swap i'th and partitionIndex'th element
@@ -29,10 +30,6 @@ public class quickSort {
 				arr[partitionIndex] = temp;
 				partitionIndex++;
 			}
-			System.out.print(count + "		");
-			count++;
-			display(arr);
-
 		}
 		//swap partitionIndex'th and last element which was considered pivot
 		int temp = arr[partitionIndex];
