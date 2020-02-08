@@ -1,0 +1,51 @@
+import java.util.Scanner;
+// Other imports go here, Do NOT change the class name
+class Main
+{
+  public static void main(String[] args)
+  {
+    // Write your code here
+    Scanner scn = new Scanner(System.in);
+    int nt = scn.nextInt();
+    while(nt-- >0){
+      int n = scn.nextInt();
+      int[][] arr = new int[n][n];
+      for(int i = 0 ; i < n; i++){
+        for(int j = 0 ; j < n ; j++){
+          arr[i][j] = scn.nextInt();
+        }
+      }
+      arr = rotateNinety(arr);
+      printArray(arr);
+      System.out.println();
+
+    }
+    
+  }
+  
+  static int[][] rotateNinety(int[][] arr){
+    int len = arr.length;
+    int[][] abstractArray = new int[len][len];
+    for(int i = 0 ; i < len ; i++){
+      for(int j = 0 ; j < len ; j++){
+        abstractArray[j][i] = arr[len-1-i][j];
+      }
+    }
+    return abstractArray;
+  }
+  
+  static void printArray(int[][] arr){
+    for(int i = 0 ;i < arr.length ; i++){
+      for(int j = 0 ; j < arr[0].length ; j++){
+        if(j == arr[0].length-1){
+        	System.out.print(arr[i][j]);  
+        }
+        else{
+         System.out.print(arr[i][j] + " "); 
+        }
+      }
+      System.out.println();
+    }
+    //System.out.println();
+  }
+}
