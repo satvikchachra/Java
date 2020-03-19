@@ -1,0 +1,71 @@
+// { Driver Code Starts
+import java.util.Scanner;
+import java.util.Stack;
+class SpeStack{
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0){
+			int n=sc.nextInt();
+			Stack<Integer> s=new Stack<>();
+			GfG g=new GfG();
+			while(!g.isFull(s,n)){
+				g.push(sc.nextInt(),s);
+			}
+		System.out.println(g.min(s));
+		}
+	}
+}// } Driver Code Ends
+/*Complete the function(s) below*/
+class GfG{
+	public void push(int a,Stack<Integer> s)
+	{
+	    //add code here.
+      
+      //pushing 2 elements at once to make the min() function O(1)
+      //so  that min element is at top of the stack in the end and all you need to do is pop
+      
+	    int min = a;
+	    if(s.isEmpty()){
+	        s.push(a);
+	        s.push(min);
+	    }
+	    else{
+	        min = Math.min(min,s.peek()); //keeping track of min element
+	        s.push(a); //push the element that comes in parameter
+	        s.push(min); //push the min element on top of it
+	    }
+	}
+  
+  //since 2 elements are pushed at once 
+  //therefore 2 popped first the min element in the stack and then the actual element is popped and returned
+  
+	public int pop(Stack<Integer> s)
+        {
+            //add code here.
+            s.pop();//remove min element first
+            return s.pop();
+	}
+  
+  //O(1) complexity
+	public int min(Stack<Integer> s)
+        {
+           //add code here.
+           return s.peek();
+	}
+  
+  //since 2 elements are pushed at once 
+  //therefore size of the stack is actually double 
+  
+	public boolean isFull(Stack<Integer>s, int n)
+        {
+           //add code here.
+           return s.size() == 2*n;
+	}
+  
+	public boolean isEmpty(Stack<Integer>s)
+        {
+           //add code here.
+           return s.size() == 0;
+	}
+}
