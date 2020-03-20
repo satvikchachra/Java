@@ -15,14 +15,16 @@ class GFG {
 		    
 		    Stack<Integer> s = new Stack<>();
 		    
-		    int count = 1;
+		    int count = 0;
 		    
 		    for(int i = 0 ; i < str.length() ; i++){
 		        
 		        if(str.charAt(i) == '('){
+		            
+		            count++;
 		            s.push(count);
 		            System.out.print(count + " ");
-		            count++;
+		            
 		        }
 		        
 		        else if(str.charAt(i) == ')'){
