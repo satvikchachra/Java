@@ -1,0 +1,25 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0){
+		    String str = scn.next();
+		    Stack<Character> s = new Stack<>();
+		    for(int i = 0 ; i < str.length() ; i++){
+		        Character ch = str.charAt(i);
+		        if(s.isEmpty() || s.peek() != ch){
+		            s.push(ch);
+		            System.out.print(ch);
+		        }
+		    }
+		    System.out.println();
+		}
+	}
+}
