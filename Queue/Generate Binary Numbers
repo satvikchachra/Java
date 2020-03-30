@@ -1,0 +1,35 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0){
+		    int n = scn.nextInt();
+		    Queue<String> q = new LinkedList<String>();
+		    q.add("1");
+		    for(int i = 1; i<=n; i++ ){
+		        String s1 = q.peek();
+		        q.remove(); 
+                System.out.print(s1 + " ");
+		        q.add(s1 + "0");
+		        q.add(s1 + "1");
+		    }
+		    System.out.println();
+		}
+	}
+    	
+}
+
+/*Queue at different stages and printing popped element according to FIFO principle 
+  1
+  10 11
+  11 100 101
+  100 101 110 111
+  101 110 111 1000 1001
+*/
