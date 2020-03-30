@@ -1,0 +1,47 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0){
+		    int n = scn.nextInt();
+		    int k = scn.nextInt();
+		    int[] arr = new int[n];
+		    for(int i = 0 ; i < n ; i++){
+		        arr[i] = scn.nextInt();
+		    }
+		    /*
+		    find max in array
+		    add to count
+		    replace it with max/2 
+		    */
+		    int count = 0;
+		    int mins = 0;
+		    while(mins != k){
+		        int idx = findMax(arr);
+		        int temp = arr[idx];
+		        count += temp;
+		        arr[idx] = temp/2;
+		        mins++;
+		    }
+		    System.out.println(count);
+		}
+	}
+	public static int findMax(int[] arr){
+	    int max = Integer.MIN_VALUE;
+	    int idx = 0;
+	    for(int i = 0 ; i < arr.length ; i++){
+	        if(max < arr[i]){
+	            max = arr[i];
+	            idx = i;
+	        }
+	    }
+	    return idx;
+	}
+}
