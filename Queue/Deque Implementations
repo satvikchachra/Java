@@ -1,0 +1,115 @@
+// { Driver Code Starts
+//Initial Template for Java
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+class GFG {
+	public static void main (String[] args) {
+	    
+	    Scanner sc=new Scanner(System.in);
+	    
+	    int t=sc.nextInt();
+	    
+	    while(t-->0)
+	    {
+	        Deque<Integer> dq = new LinkedList<>();
+	        
+	        int queries=sc.nextInt();
+	        
+	        while(queries-->0)
+	        {
+	            
+	            String s=sc.next().trim();
+	            
+	          
+	            
+	            if(s.equals("pb"))
+	            {
+	                int x=Integer.parseInt(sc.nextLine().trim());
+	                
+        	   
+        	        push_back_pb(dq, x);
+        	        System.out.println(dq.peekLast());
+    	        }
+    	    
+        	    // if query is to push front
+        	    else if(s.equals("pf"))
+        	    {
+        	        int x=Integer.parseInt(sc.nextLine().trim());
+        	    
+        	        push_front_pf(dq, x);
+        	        System.out.println(dq.peekFirst());
+        	    }
+    	    
+    	        // if query is to pop back
+        	    else if(s.equals("pp_b"))
+        	    {
+        	        pop_back_ppb(dq);
+        	        System.out.println(dq.size());
+        	    }
+        	    
+        	    // if query is to return front
+        	    else
+        	    {
+        	         int x = front_dq(dq);
+        	        System.out.println(x);
+        	    }
+	           
+	        }
+	    }
+		
+	}
+	
+	
+ // } Driver Code Ends
+//User function Template for Java
+
+/* Function to push element to front
+    * dq : dqueue in which element is to be pushed
+    * x : element to be pushed
+    */
+    public static void push_back_pb(Deque<Integer> dq, int x){
+        
+        //Your code here
+        dq.addLast(x);
+        
+    }
+    
+    /* Function to pop element from back
+    * dq : dqueue From which element is to be popped
+    */
+    public static void pop_back_ppb(Deque<Integer> dq){
+        
+      //Your code here
+      if(dq.size() != 0){
+          dq.removeLast();
+      }
+      
+        
+    }
+    
+    /* Function to return element from front
+    * dq : dqueue from which element is to be returned
+    */
+    public static int front_dq(Deque<Integer> dq){
+        
+      //Your code here
+      return dq.size() == 0? -1 : dq.getFirst();
+    }
+    
+    /* Function to push element to front
+    * dq : dqueue in which element is to be pushed
+    * x : element to be pushed
+    */
+    public static void push_front_pf(Deque<Integer> dq, int x){
+        
+      //Your code here
+        dq.addFirst(x);
+    }
+
+// { Driver Code Starts.
+
+
+}  // } Driver Code Ends
