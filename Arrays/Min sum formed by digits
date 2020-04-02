@@ -1,0 +1,32 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0){
+		    int size = scn.nextInt();
+		    int arr[] = new int[size];
+		    for(int i = 0 ; i < size ; i++){
+		        arr[i] = scn.nextInt();
+		    }
+		    Arrays.sort(arr);
+		    int n1 = 0, n2 = 0;
+		    for(int i = 0 ; i < size ; i++){
+		        if(i%2 == 0){
+		            n1 = n1*10 + arr[i];
+		        }
+		        else{
+		            n2 = n2*10 + arr[i];
+		        }
+		    }
+		    int ans = n1+n2;
+		    System.out.println(ans);
+		}
+	}
+}
