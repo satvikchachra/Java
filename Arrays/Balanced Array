@@ -1,0 +1,31 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0){
+		    int n = scn.nextInt();
+		    int arr[] = new int[n];
+		    int lsum = 0, rsum = 0;
+		    
+		    for(int i = 0 ; i < n ; i++){
+		        arr[i] = scn.nextInt();
+		        if(i<n/2){
+		            lsum += arr[i];
+		        }
+		        else{
+		            rsum += arr[i];
+		        }
+		    }
+		    
+		    System.out.println(Math.abs(lsum-rsum));
+		}
+		
+	}
+}
