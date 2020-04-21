@@ -1,0 +1,33 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner scn = new Scanner(System.in);
+		int nt = scn.nextInt();
+		while(nt-- > 0 ){
+		    int size = scn.nextInt();
+		    int arr[] = new int [size+1];
+		    
+		    for(int i = 1 ; i <=size ; i++){
+		        int temp = scn.nextInt();
+		        arr[temp] = i;
+		    }
+		   
+		    printArray(arr);
+		}
+		
+		
+	}
+	
+	public static void printArray(int arr[]){
+	    for(int i = 1 ; i <= arr.length-1 ; i++){
+	        System.out.print(arr[i] + " ");
+	    }
+	    System.out.println();
+	}
+}
